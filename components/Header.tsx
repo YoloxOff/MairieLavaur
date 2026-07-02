@@ -21,7 +21,7 @@ export default function Header() {
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				<div className="flex items-center justify-between h-20">
 					<Link href="/" className="flex items-center gap-3 shrink-0">
-						<Image src="/images/logo-lavaur.png" alt="Ville de Lavaur" width={866} height={100} className="h-8 w-auto sm:h-9" priority />
+						<Image src="/images/logo-lavaur.png" alt="Ville de Lavaur" width={866} height={100} className="h-5 w-auto sm:h-6" priority />
 					</Link>
 
 					<nav aria-label="Menu principal" className="hidden lg:block">
