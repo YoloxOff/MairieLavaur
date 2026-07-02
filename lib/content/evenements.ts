@@ -10,6 +10,7 @@ export type Evenement = {
 	inscriptionRequise: boolean;
 	inscriptionUrl?: string;
 	content: string[];
+	image?: string;
 };
 
 export const evenementCategories: EvenementCategorie[] = [
@@ -20,91 +21,42 @@ export const evenementCategories: EvenementCategorie[] = [
 	"Commemorations",
 ];
 
-function inDays(days: number, hour = 18): string {
-	const d = new Date();
-	d.setUTCHours(hour, 0, 0, 0);
-	d.setUTCDate(d.getUTCDate() + days);
-	return d.toISOString();
-}
-
-// Dates calculees par rapport a aujourd'hui pour que l'agenda affiche toujours
-// des evenements "a venir" - a remplacer par de vrais evenements via le CMS.
+// Reprises du site officiel https://www.ville-lavaur.fr/ (juillet 2026).
 export const evenements: Evenement[] = [
 	{
-		slug: "fete-de-la-musique",
-		title: "Fete de la musique",
-		category: "Culture",
-		dateDebut: inDays(4, 18),
-		dateFin: inDays(4, 23),
-		lieu: "Centre-ville",
-		inscriptionRequise: false,
-		content: [
-			"Concerts et scenes ouvertes dans tout le centre-ville pour la Fete de la musique.",
-			"Programmation complete disponible aupres de l'office de tourisme.",
-		],
-	},
-	{
-		slug: "tournoi-jeunes-tennis",
-		title: "Tournoi jeunes de tennis",
-		category: "Sport",
-		dateDebut: inDays(9, 9),
-		dateFin: inDays(10, 18),
-		lieu: "Tennis Club Vaurais",
-		inscriptionRequise: true,
-		inscriptionUrl: "/contact",
-		content: [
-			"Le Tennis Club Vaurais organise son tournoi jeunes annuel, ouvert aux moins de 15 ans.",
-			"Inscriptions limitees, places attribuees par ordre d'arrivee.",
-		],
-	},
-	{
-		slug: "forum-des-associations",
-		title: "Forum des associations",
-		category: "Associations",
-		dateDebut: inDays(16, 9),
-		dateFin: inDays(16, 17),
-		lieu: "Halle aux grains",
-		inscriptionRequise: false,
-		content: [
-			"Plus de 80 associations vauréennes presentent leurs activites pour la nouvelle saison.",
-			"Entree libre, animations pour toute la famille.",
-		],
-	},
-	{
-		slug: "atelier-jeunesse-vacances",
-		title: "Atelier creatif jeunesse - vacances",
-		category: "Jeunesse",
-		dateDebut: inDays(21, 14),
-		lieu: "Maison des associations",
-		inscriptionRequise: true,
-		inscriptionUrl: "/contact",
-		content: [
-			"Un atelier creatif gratuit pour les 6-12 ans pendant les vacances scolaires.",
-			"Places limitees a 20 enfants, inscription obligatoire aupres du service jeunesse.",
-		],
-	},
-	{
-		slug: "commemoration-8-mai",
-		title: "Ceremonie commemorative",
+		slug: "fete-nationale",
+		title: "Fête nationale",
 		category: "Commemorations",
-		dateDebut: inDays(2, 11),
-		lieu: "Monument aux morts",
+		dateDebut: "2026-07-13T18:00:00+02:00",
+		dateFin: "2026-07-14T18:00:00+02:00",
+		lieu: "Monument aux Morts, allées Jean-Jaurès, jardin de l'Évêché",
 		inscriptionRequise: false,
 		content: [
-			"Ceremonie commemorative organisee par la municipalite en presence des anciens combattants.",
+			"13 juillet, à partir de 18h : cérémonie au monument aux Morts, discours du maire, défilé, puis apéritif républicain offert par la Ville et bal des pompiers avec concert et restauration.",
+			"14 juillet, de 14h30 à 18h : concours de pétanque.",
 		],
 	},
 	{
-		slug: "exposition-patrimoine",
-		title: "Exposition sur le patrimoine vaurais",
+		slug: "les-jeudis-au-jardin",
+		title: "Les jeudis au jardin",
 		category: "Culture",
-		dateDebut: inDays(30, 10),
-		dateFin: inDays(45, 18),
-		lieu: "Cathedrale Saint-Alain",
+		dateDebut: "2026-07-09T19:30:00+02:00",
+		dateFin: "2026-07-23T23:30:00+02:00",
+		lieu: "Jardin de l'Évêché",
 		inscriptionRequise: false,
-		content: [
-			"Une exposition retrace l'histoire du patrimoine batisseur de la ville de Lavaur.",
-		],
+		content: ["Rendez-vous estival au jardin de l'Évêché - programmation annoncée par affichage."],
+		image: "/images/agenda/jeudis-au-jardin.jpg",
+	},
+	{
+		slug: "exposition-paul-gervais",
+		title: "Exposition « Paul Gervais, joies de la Belle Époque »",
+		category: "Culture",
+		dateDebut: "2026-05-30T10:00:00+02:00",
+		dateFin: "2026-09-20T18:00:00+02:00",
+		lieu: "Chapelle du musée du Pays de Cocagne",
+		inscriptionRequise: false,
+		content: ["Exposition temporaire dans la chapelle du musée du Pays de Cocagne, du 30 mai au 20 septembre 2026."],
+		image: "/images/actualites/expo-paul-gervais.jpg",
 	},
 ];
 
@@ -115,7 +67,7 @@ export function getEvenementBySlug(slug: string): Evenement | undefined {
 export function getUpcomingEvenements(category?: string): Evenement[] {
 	const now = Date.now();
 	return evenements
-		.filter((e) => new Date(e.dateDebut).getTime() >= now)
+		.filter((e) => new Date(e.dateFin || e.dateDebut).getTime() >= now)
 		.filter((e) => !category || e.category.toLowerCase() === category.toLowerCase())
 		.sort((a, b) => new Date(a.dateDebut).getTime() - new Date(b.dateDebut).getTime());
 }

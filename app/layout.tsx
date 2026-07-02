@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
+import { mairie } from "@/lib/coordonnees";
 
 const publicSans = Public_Sans({
 	subsets: ["latin"],
@@ -64,6 +65,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 							"@type": "GovernmentOrganization",
 							name: "Ville de Lavaur",
 							url: siteUrl,
+							telephone: mairie.telephone,
+							email: mairie.email,
+							address: {
+								"@type": "PostalAddress",
+								streetAddress: `${mairie.adresseLigne1}, ${mairie.adresseLigne2}`,
+								postalCode: mairie.codePostal,
+								addressLocality: mairie.ville,
+								addressCountry: "FR",
+							},
 						}),
 					}}
 				/>

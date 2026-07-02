@@ -16,6 +16,7 @@ export type Actualite = {
 	category: ActualiteCategorie;
 	date: string; // ISO date
 	author: string;
+	image?: string;
 };
 
 export const actualiteCategories: ActualiteCategorie[] = [
@@ -29,81 +30,71 @@ export const actualiteCategories: ActualiteCategorie[] = [
 	"Education",
 ];
 
-// Contenu d'exemple - a remplacer par de vraies actualites via le CMS.
+// Reprises du site officiel https://www.ville-lavaur.fr/ (juillet 2026).
 export const actualites: Actualite[] = [
 	{
-		slug: "reouverture-mediatheque",
-		title: "Reouverture de la mediatheque apres travaux",
-		excerpt: "La mediatheque municipale rouvre ses portes avec un espace jeunesse agrandi et de nouveaux horaires.",
+		slug: "lavaur-en-tete-qualite-de-vie",
+		title: "Lavaur, en tête de toutes les villes tarnaises pour sa qualité de vie",
+		excerpt: "Lavaur se classe première commune du Tarn pour la qualité de vie dans sa catégorie, et destination privilégiée pour s'installer pres de Toulouse.",
 		content: [
-			"Apres deux mois de travaux, la mediatheque municipale a rouvert ses portes au public.",
-			"L'espace jeunesse a ete agrandi et un nouveau coin lecture presse a ete amenage au rez-de-chaussee.",
-			"Les horaires d'ouverture restent inchanges : du mardi au samedi, de 10h a 18h.",
+			"La Ville de Lavaur se classe première de sa catégorie (10 000 à 20 000 habitants) pour la qualité de vie dans le Tarn.",
+			"Elle est egalement citee comme destination privilegiee pour s'installer pres de Toulouse selon le classement 2025 du Figaro, et comme destination de premier choix pour les seniors en quete de qualite de vie dans la region.",
+			"Sur le plan economique, la ville a genere 2 400 emplois en 25 ans, la positionnant comme le troisieme pole economique du Tarn, tout en maitrisant la fiscalite locale : la taxe fonciere n'a augmente que de 10% en dix ans, contre 33% au niveau national.",
+			"La commune cumule plusieurs labels : Ville active et sportive, Terre de Jeux 2024, et plusieurs reconnaissances environnementales et d'accessibilite, dont celui de premiere ville de sa categorie pour l'accessibilite sportive en France.",
 		],
-		category: "Culture",
-		date: "2026-06-20",
+		category: "Ville",
+		date: "2026-04-22",
 		author: "Service Communication",
 	},
 	{
-		slug: "travaux-place-du-plo",
-		title: "Travaux de requalification de la place du Plo",
-		excerpt: "Des travaux de voirie et d'embellissement debutent place du Plo pour ameliorer l'accessibilite du centre-ville.",
-		content: [
-			"La Ville de Lavaur engage une requalification complete de la place du Plo.",
-			"Les travaux visent a ameliorer l'accessibilite PMR, planter de nouveaux arbres et refaire les reseaux d'eaux pluviales.",
-			"Une circulation alternee sera mise en place pendant la duree du chantier.",
-		],
-		category: "Travaux",
-		date: "2026-06-15",
-		author: "Direction des services techniques",
+		slug: "exposition-paul-gervais-belle-epoque",
+		title: "Exposition « Paul Gervais, joies de la Belle Époque »",
+		excerpt: "Du 30 mai au 20 septembre 2026, dans la chapelle du musée du Pays de Cocagne.",
+		content: ["Du 30 mai au 20 septembre 2026, dans la chapelle du musée du Pays de Cocagne."],
+		category: "Culture",
+		date: "2026-04-17",
+		author: "Service Culture",
+		image: "/images/actualites/expo-paul-gervais.jpg",
 	},
 	{
-		slug: "inscriptions-centre-loisirs-ete",
-		title: "Ouverture des inscriptions au centre de loisirs d'ete",
-		excerpt: "Les inscriptions pour l'accueil de loisirs des vacances d'ete sont ouvertes depuis ce lundi.",
+		slug: "handicap-permanences-afm-telethon",
+		title: "Handicap : des permanences d'accompagnement pour les familles",
+		excerpt: "L'AFM Telethon propose des permanences d'accueil a la Maison des associations pour les personnes en situation de handicap et leurs familles.",
 		content: [
-			"Le service jeunesse ouvre les inscriptions pour l'accueil de loisirs des vacances d'ete.",
-			"Les familles peuvent inscrire leurs enfants directement en ligne depuis la rubrique Demarches.",
+			"Des permanences pour informer et accompagner les familles concernées se tiennent à la Maison des associations (Bel Air), salle 104, 1er étage avec ascenseur.",
+			"L'AFM Téléthon y accueille les personnes en situation de handicap et leurs familles pour la constitution de dossiers, les démarches administratives, les demandes d'aides, ainsi qu'un espace d'écoute contre l'isolement.",
+			"Horaires : après-midi les 1er et 3e lundis du mois, matin les 2e et 4e lundis du mois.",
+			"Contact : yrivaud@afm-telethon.fr ou 06 50 91 87 48.",
 		],
-		category: "Jeunesse",
-		date: "2026-06-10",
-		author: "Service Jeunesse",
+		category: "Associations",
+		date: "2026-04-02",
+		author: "AFM Téléthon",
+		image: "/images/actualites/handicap-afm-telethon.png",
 	},
 	{
-		slug: "budget-participatif-2026",
-		title: "Lancement du budget participatif 2026",
-		excerpt: "Les Vaurais sont invites a proposer et voter pour des projets d'interet general.",
+		slug: "appel-a-candidatures-rooftop",
+		title: "Appel à candidatures prolongé : mise à disposition d'un local « rooftop »",
+		excerpt: "La ville prolonge d'un mois l'appel a candidatures pour l'amenagement d'un espace de restauration au-dessus du cinema Cine-Pastel.",
 		content: [
-			"La municipalite lance la deuxieme edition du budget participatif.",
-			"Chaque habitant peut deposer un projet jusqu'au 30 septembre, avant un vote ouvert a tous en octobre.",
-		],
-		category: "Ville",
-		date: "2026-06-05",
-		author: "Cabinet du Maire",
-	},
-	{
-		slug: "nouvelle-saison-sportive",
-		title: "Les clubs sportifs vauréens preparent la nouvelle saison",
-		excerpt: "Forums des associations, portes ouvertes et inscriptions : le point sur la rentree sportive.",
-		content: [
-			"Les clubs sportifs de la ville se preparent pour la rentree avec un forum des associations en septembre.",
-			"Retrouvez la liste complete des clubs dans la rubrique Vivre a Lavaur.",
-		],
-		category: "Sport",
-		date: "2026-05-28",
-		author: "Service des Sports",
-	},
-	{
-		slug: "marche-artisans-locaux",
-		title: "Un marche de producteurs et artisans locaux tous les vendredis",
-		excerpt: "La Ville soutient les circuits courts avec un nouveau marche hebdomadaire place du Foirail.",
-		content: [
-			"Un marche de producteurs et artisans locaux se tient desormais chaque vendredi place du Foirail.",
-			"Cette initiative vise a soutenir l'economie locale et les circuits courts.",
+			"L'appel à candidatures pour la mise à disposition d'un local en vue de l'aménagement et de l'exploitation d'un espace de restauration « rooftop », situé au-dessus du cinéma Ciné-Pastel, est prolongé d'un mois.",
+			"Les candidatures sont attendues jusqu'au 15 juin 2026.",
+			"Les personnes intéressées peuvent demander le dossier de candidature à commandepublique@ville-lavaur.fr. Plus de détails sont disponibles dans la rubrique Marchés publics du site.",
 		],
 		category: "Economie",
-		date: "2026-05-20",
-		author: "Service Economie locale",
+		date: "2026-04-02",
+		author: "Commande publique",
+	},
+	{
+		slug: "la-ville-recrute",
+		title: "La ville recrute",
+		excerpt: "La Ville de Lavaur recrute un(e) gestionnaire paie-RH et un(e) agent d'etat civil et operations funeraires.",
+		content: [
+			"La Ville de Lavaur recrute pour deux postes à temps complet : un·e Gestionnaire Paie-RH et un·e Agent d'État Civil et Opérations Funéraires.",
+			"Les fiches de poste détaillées sont disponibles en téléchargement sur le site officiel de la ville.",
+		],
+		category: "Ville",
+		date: "2026-03-24",
+		author: "Ressources Humaines",
 	},
 ];
 

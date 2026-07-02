@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
 import ShareLinks from "@/components/ShareLinks";
 import Map from "@/components/Map";
+import ActuThumbnail from "@/components/ActuThumbnail";
 import { evenements, getEvenementBySlug } from "@/lib/content/evenements";
 
 export function generateStaticParams() {
@@ -54,6 +55,8 @@ export default async function EvenementDetailPage({ params }: { params: Promise<
 					</a>
 				)}
 			</div>
+
+			{ev.image && <ActuThumbnail image={ev.image} alt={ev.title} className="w-full h-64 rounded-xl mb-8" />}
 
 			<div className="prose prose-institution max-w-none prose-headings:text-institution-900 prose-a:text-institution-700">
 				{ev.content.map((p, i) => (

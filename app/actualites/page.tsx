@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
+import ActuThumbnail from "@/components/ActuThumbnail";
 import { actualites, actualiteCategories } from "@/lib/content/actualites";
 
 export const metadata: Metadata = { title: "Actualites" };
@@ -79,7 +80,7 @@ export default async function ActualitesPage({
 					{items.map((actu) => (
 						<article key={actu.slug} className="card">
 							<Link href={`/actualites/${actu.slug}`} className="block">
-								<div className="w-full h-44 bg-institution-100" aria-hidden="true" />
+								<ActuThumbnail image={actu.image} alt={actu.title} />
 								<div className="p-5">
 									<p className="text-xs font-semibold uppercase tracking-wide text-occitan-terracotta mb-2">
 										{new Date(actu.date).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}

@@ -4,6 +4,7 @@ import { PageHero } from "@/components/SectionBlock";
 import Map from "@/components/Map";
 import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
+import { mairie, numerosUtiles } from "@/lib/coordonnees";
 
 export const metadata: Metadata = { title: "Contact" };
 
@@ -18,7 +19,7 @@ const faq = [
 	},
 	{
 		q: "Quels sont les horaires d'ouverture de la mairie ?",
-		a: "La mairie est ouverte du lundi au vendredi de 8h30 a 12h et de 13h30 a 17h.",
+		a: `La mairie est ouverte ${mairie.horaires.map((h) => `${h.jours.toLowerCase()} de ${h.heures}`).join(", ")}.`,
 	},
 ];
 
@@ -43,25 +44,18 @@ export default function ContactPage() {
 					<div id="urgences" className="scroll-mt-24 mt-8">
 						<h3 className="text-lg font-semibold text-institution-900 mb-3">Numeros utiles & urgences</h3>
 						<ul className="space-y-2 text-sm">
-							<li className="flex justify-between">
-								<span>Mairie</span>
-								<a className="font-medium hover:underline" href="tel:+33563583500">
-									05 63 58 35 00
-								</a>
-							</li>
-							<li className="flex justify-between">
-								<span>Police municipale</span>
-								<a className="font-medium hover:underline" href="tel:+33563583510">
-									05 63 58 35 10
-								</a>
-							</li>
-							<li className="flex justify-between">
-								<span>Urgences (SAMU / Police / Pompiers)</span>
-								<a className="font-medium hover:underline" href="tel:112">
-									112
-								</a>
-							</li>
+							{numerosUtiles.map((n) => (
+								<li key={n.label} className="flex justify-between gap-4">
+									<span>{n.label}</span>
+									<a className="font-medium hover:underline shrink-0" href={`tel:${n.telHref}`}>
+										{n.tel}
+									</a>
+								</li>
+							))}
 						</ul>
+						<p className="text-xs text-institution-500 mt-3">
+							Horaires d&apos;ouverture de la mairie : {mairie.horaires.map((h) => `${h.jours} ${h.heures}`).join(" · ")}
+						</p>
 					</div>
 				</Reveal>
 			</section>

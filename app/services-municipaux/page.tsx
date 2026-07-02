@@ -3,16 +3,21 @@ import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
 import { PageHero } from "@/components/SectionBlock";
 import Reveal from "@/components/Reveal";
+import { mairie, serviceUrbanisme } from "@/lib/coordonnees";
 
 export const metadata: Metadata = { title: "Services municipaux" };
 
+const horairesMairie = mairie.horaires.map((h) => `${h.jours} ${h.heures}`).join(" · ");
+
 const services = [
-	{ nom: "Etat civil", horaires: "Lun-Ven 8h30-12h / 13h30-17h", tel: "05 63 58 35 01" },
-	{ nom: "Urbanisme", horaires: "Lun-Ven 9h-12h", tel: "05 63 58 35 02" },
-	{ nom: "Affaires scolaires & cantine", horaires: "Lun-Ven 8h30-17h", tel: "05 63 58 35 03" },
-	{ nom: "Culture", horaires: "Mar-Sam 10h-18h", tel: "05 63 58 35 04" },
-	{ nom: "Sport & vie associative", horaires: "Lun-Ven 9h-12h / 14h-17h", tel: "05 63 58 35 05" },
-	{ nom: "Environnement & dechets", horaires: "Lun-Ven 9h-12h", tel: "05 63 58 35 06" },
+	{ nom: "Etat civil", horaires: horairesMairie, tel: mairie.telephone },
+	{ nom: "Urbanisme", adresse: serviceUrbanisme.adresse, horaires: serviceUrbanisme.horaires.map((h) => `${h.jours} ${h.heures}`).join(" · "), tel: serviceUrbanisme.telephone },
+	{ nom: "Affaires scolaires & cantine", horaires: horairesMairie, tel: mairie.telephone },
+	{ nom: "Culture (mediatheque, musee du Pays de Cocagne)", horaires: "Voir horaires sur place", tel: mairie.telephone },
+	{ nom: "Sport & vie associative", horaires: horairesMairie, tel: mairie.telephone },
+	{ nom: "Police municipale", horaires: horairesMairie, tel: "05 63 58 05 69" },
+	{ nom: "Environnement & proprete", horaires: horairesMairie, tel: mairie.telephone },
+	{ nom: "L'Isatis (bus gratuit)", horaires: "Lundi au samedi", tel: "05 31 81 96 35" },
 ];
 
 export default function ServicesMunicipauxPage() {
@@ -33,6 +38,7 @@ export default function ServicesMunicipauxPage() {
 							{services.map((service) => (
 								<div key={service.nom} className="card p-5">
 									<h3 className="font-semibold text-institution-900 mb-1">{service.nom}</h3>
+									{"adresse" in service && service.adresse && <p className="text-sm text-institution-600">{service.adresse}</p>}
 									<p className="text-sm text-institution-600">{service.horaires}</p>
 									<p className="text-sm text-institution-700 mt-1">
 										<a className="hover:underline" href={`tel:${service.tel.replace(/\s/g, "")}`}>

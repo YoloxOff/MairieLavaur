@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Breadcrumb from "@/components/Breadcrumb";
+import { mairie } from "@/lib/coordonnees";
 
 export const metadata: Metadata = { title: "Mentions legales" };
 
@@ -10,7 +11,7 @@ export default function MentionsLegalesPage() {
 			<h1 className="text-3xl sm:text-4xl font-bold text-institution-900 mb-6">Mentions legales</h1>
 			<div className="prose prose-institution max-w-none">
 				<p>
-					<strong>Editeur du site :</strong> Mairie de Lavaur, Place du Plô, 81500 Lavaur.
+					<strong>Editeur du site :</strong> Mairie de Lavaur, {mairie.adresseComplete}.
 				</p>
 				<p>
 					<strong>Directeur de la publication :</strong> Le Maire de Lavaur.

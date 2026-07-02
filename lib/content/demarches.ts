@@ -91,7 +91,9 @@ export const demarches: Demarche[] = [
 		category: "Urbanisme",
 		content: [
 			"Permis de construire, declaration prealable de travaux : le service urbanisme instruit toutes les demandes d'autorisation.",
-			"Les formulaires Cerfa sont disponibles aupres du service ou en telechargement sur service-public.fr.",
+			"Le service urbanisme se situe au 300 Chemin d'En Roudil, 81500 Lavaur. Il est ouvert du lundi au jeudi de 8h a 12h et de 13h30 a 17h30, et le vendredi de 8h a 12h et de 13h30 a 16h30.",
+			"Contact : 05 63 83 12 42 ou 05 63 83 03 04 - urbanisme@ville-lavaur.fr.",
+			"Le Plan Local d'Urbanisme (PLU) de Lavaur, approuve par deliberation du 15 decembre 2025, est consultable en mairie et sur le Geoportail de l'urbanisme. La dematerialisation des actes d'urbanisme permet de deposer une demande via le guichet unique en ligne.",
 		],
 		lienEnLigne: "https://www.service-public.fr/particuliers/vosdroits/N319",
 	},

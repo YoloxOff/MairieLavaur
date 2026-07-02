@@ -1,11 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import NewsletterForm from "./NewsletterForm";
+import { mairie } from "@/lib/coordonnees";
 
 const reseaux: Record<string, string> = {
-	Facebook: "https://www.facebook.com/",
-	Instagram: "https://www.instagram.com/",
-	YouTube: "https://www.youtube.com/",
-	LinkedIn: "https://www.linkedin.com/",
+	Facebook: "https://www.facebook.com/VilledeLavaur/",
+	Twitter: "https://twitter.com/VilledeLavaur",
+	Instagram: "https://www.instagram.com/villedelavaur/",
 };
 
 export default function Footer() {
@@ -15,18 +16,22 @@ export default function Footer() {
 				<div>
 					<p className="text-white font-bold text-lg mb-3">Ville de Lavaur</p>
 					<address className="not-italic text-sm text-institution-200 leading-relaxed">
-						Place du Plô
+						{mairie.adresseLigne1}
 						<br />
-						81500 Lavaur
+						{mairie.adresseLigne2} - {mairie.codePostal} {mairie.ville}
 						<br />
-						<a href="tel:+33563583500" className="hover:text-white">
-							05 63 58 35 00
+						<a href={`tel:${mairie.telephoneHref}`} className="hover:text-white">
+							{mairie.telephone}
 						</a>
 						<br />
-						<a href="mailto:contact@mairie-lavaur.fr" className="hover:text-white">
-							contact@mairie-lavaur.fr
+						<a href={`mailto:${mairie.email}`} className="hover:text-white">
+							{mairie.email}
 						</a>
 					</address>
+					<div className="flex items-center gap-3 mt-4">
+						<Image src="/images/badges/ville-fleurie.png" alt="Label Ville fleurie" width={182} height={67} className="h-10 w-auto" />
+						<Image src="/images/badges/active-sport.png" alt="Label Ville active et sportive" width={182} height={67} className="h-10 w-auto" />
+					</div>
 				</div>
 
 				<nav aria-label="Liens utiles">

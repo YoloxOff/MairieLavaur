@@ -9,17 +9,28 @@ const sections: SectionData[] = [
 	{
 		id: "presentation",
 		title: "Presentation",
-		body: <p>Sous-prefecture du Tarn, Lavaur est une ville d&apos;art et d&apos;histoire situee au bord de l&apos;Agout, entre Toulouse et Albi. Contenu a completer par la mairie.</p>,
+		body: (
+			<>
+				<p>Lavaur est une cite d&apos;histoire, au riche patrimoine architectural, situee dans le Tarn.</p>
+				<p>La ville se classe premiere de sa categorie pour la qualite de vie dans le Tarn, et figure parmi les destinations privilegiees pour s&apos;installer pres de Toulouse.</p>
+			</>
+		),
 	},
 	{
 		id: "histoire",
-		title: "Histoire",
-		body: <p>Fondee au haut Moyen Age, Lavaur a traverse la croisade des Albigeois et conserve un patrimoine historique riche. Contenu a completer par la mairie.</p>,
+		title: "Un peu d'histoire",
+		body: <p>Cite d&apos;histoire, Lavaur a construit au fil des siecles un patrimoine architectural riche, aujourd&apos;hui mis en valeur autour de son castrum et de ses monuments.</p>,
 	},
 	{
 		id: "patrimoine",
-		title: "Patrimoine",
-		body: <p>Cathedrale Saint-Alain, jardin de l&apos;Eveche, pont de pierre... le patrimoine vauréen se decouvre au fil des rues. Contenu a completer par la mairie.</p>,
+		title: "Patrimoine : la cathedrale Saint-Alain et l'Hotel de Ville",
+		body: (
+			<>
+				<p>La <strong>cathedrale Saint-Alain</strong> est le monument religieux majeur de la ville.</p>
+				<p><strong>L&apos;Hotel de Ville</strong> est un edifice municipal notable du centre historique.</p>
+				<p>En 2001, la Ville de Lavaur a fait l&apos;acquisition de l&apos;ancienne maison des Sœurs du Christ, vaste edifice et jardins situes au cœur du castrum, pour y creer un pole culturel regroupant une mediatheque, un musee et des archives anciennes.</p>
+			</>
+		),
 	},
 	{
 		id: "quartiers",

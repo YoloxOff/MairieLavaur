@@ -2,6 +2,7 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import Map from "@/components/Map";
 import NewsletterForm from "@/components/NewsletterForm";
+import ActuThumbnail from "@/components/ActuThumbnail";
 import { actualites } from "@/lib/content/actualites";
 import { getUpcomingEvenements } from "@/lib/content/evenements";
 
@@ -16,9 +17,9 @@ const accesRapides = [
 
 const chiffresCles = [
 	{ valeur: "11 000+", label: "Habitants" },
-	{ valeur: "150+", label: "Associations" },
-	{ valeur: "10", label: "Groupes scolaires" },
-	{ valeur: "800", label: "Ans d'histoire" },
+	{ valeur: "2 400", label: "Emplois crees en 25 ans" },
+	{ valeur: "3e", label: "Pole economique du Tarn" },
+	{ valeur: "1ere", label: "Ville du Tarn pour la qualite de vie" },
 ];
 
 function formatEventDate(dateDebut: string, dateFin?: string) {
@@ -112,7 +113,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
 						{latestActus.map((actu) => (
 							<article key={actu.slug} className="card">
 								<Link href={`/actualites/${actu.slug}`} className="block">
-									<div className="w-full h-44 bg-institution-100" aria-hidden="true" />
+									<ActuThumbnail image={actu.image} alt={actu.title} />
 									<div className="p-5">
 										<p className="text-xs font-semibold uppercase tracking-wide text-occitan-terracotta mb-2">{actu.category}</p>
 										<h3 className="font-semibold text-institution-900 mb-2">{actu.title}</h3>

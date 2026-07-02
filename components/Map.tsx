@@ -3,7 +3,7 @@
 // once services/parkings/monuments data is available.
 export default function Map({
 	height = "420",
-	query = "Mairie de Lavaur, Place du Plô, 81500 Lavaur",
+	query = "Mairie de Lavaur, Place du Général Sudre, 81500 Lavaur",
 }: {
 	height?: string;
 	query?: string;

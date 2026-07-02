@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
 import ShareLinks from "@/components/ShareLinks";
+import ActuThumbnail from "@/components/ActuThumbnail";
 import { actualites, getActualiteBySlug } from "@/lib/content/actualites";
 
 export function generateStaticParams() {
@@ -35,7 +36,7 @@ export default async function ActualiteDetailPage({ params }: { params: Promise<
 					Publie le {new Date(actu.date).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })} par {actu.author}
 				</p>
 
-				<div className="w-full h-64 bg-institution-100 rounded-xl mb-8" aria-hidden="true" />
+				<ActuThumbnail image={actu.image} alt={actu.title} className="w-full h-64 rounded-xl mb-8" />
 
 				<div className="prose prose-institution max-w-none prose-headings:text-institution-900 prose-a:text-institution-700">
 					{actu.content.map((p, i) => (
