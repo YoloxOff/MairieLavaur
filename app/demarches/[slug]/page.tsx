@@ -1,22 +1,23 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
-import { demarches, getDemarcheBySlug } from "@/lib/content/demarches";
+import { getDemarches, getDemarcheBySlug } from "@/lib/data/demarches";
 
-export function generateStaticParams() {
-	return demarches.map((d) => ({ slug: d.slug }));
+export async function generateStaticParams() {
+	const items = await getDemarches();
+	return items.map((d) => ({ slug: d.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
 	const { slug } = await params;
-	const d = getDemarcheBySlug(slug);
+	const d = await getDemarcheBySlug(slug);
 	if (!d) return {};
 	return { title: d.title };
 }
 
 export default async function DemarcheDetailPage({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug } = await params;
-	const d = getDemarcheBySlug(slug);
+	const d = await getDemarcheBySlug(slug);
 	if (!d) notFound();
 
 	return (

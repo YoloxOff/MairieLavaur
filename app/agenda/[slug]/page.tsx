@@ -4,15 +4,16 @@ import Breadcrumb from "@/components/Breadcrumb";
 import ShareLinks from "@/components/ShareLinks";
 import Map from "@/components/Map";
 import ActuThumbnail from "@/components/ActuThumbnail";
-import { evenements, getEvenementBySlug } from "@/lib/content/evenements";
+import { getEvenements, getEvenementBySlug } from "@/lib/data/evenements";
 
-export function generateStaticParams() {
-	return evenements.map((e) => ({ slug: e.slug }));
+export async function generateStaticParams() {
+	const items = await getEvenements();
+	return items.map((e) => ({ slug: e.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
 	const { slug } = await params;
-	const ev = getEvenementBySlug(slug);
+	const ev = await getEvenementBySlug(slug);
 	if (!ev) return {};
 	return { title: ev.title };
 }
@@ -32,7 +33,7 @@ function formatEventDate(dateDebut: string, dateFin?: string) {
 
 export default async function EvenementDetailPage({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug } = await params;
-	const ev = getEvenementBySlug(slug);
+	const ev = await getEvenementBySlug(slug);
 	if (!ev) notFound();
 
 	const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";

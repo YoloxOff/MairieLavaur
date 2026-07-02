@@ -3,29 +3,18 @@ import Breadcrumb from "@/components/Breadcrumb";
 import SectionBlock, { PageHero, type SectionData } from "@/components/SectionBlock";
 import Map from "@/components/Map";
 import Reveal from "@/components/Reveal";
+import { getPageSections } from "@/lib/data/pageSections";
 
 export const metadata: Metadata = { title: "Tourisme" };
 
-const sections: SectionData[] = [
-	{
-		id: "monuments",
-		title: "Monuments",
-		body: (
-			<>
-				<p>Lavaur est une cite d&apos;histoire, au riche patrimoine architectural.</p>
-				<p>
-					<strong>La cathedrale Saint-Alain</strong>, monument religieux majeur de la ville, et <strong>l&apos;Hotel de Ville</strong>, edifice municipal notable du centre historique, comptent parmi les incontournables du patrimoine vauréen.
-				</p>
-				<p>Le <strong>jardin de l&apos;Eveche</strong> accueille regulierement les rendez-vous estivaux de la ville (Jeudis au jardin, ceremonies commemoratives).</p>
-			</>
-		),
-	},
-	{ id: "balades", title: "Balades", body: <p>Itineraires de randonnee et balades le long de l&apos;Agout. Contenu a completer par l&apos;office de tourisme.</p> },
-	{ id: "restaurants-hebergements", title: "Restaurants & hebergements", body: <p>Selection de restaurants, hotels et chambres d&apos;hotes a Lavaur et alentours.</p> },
-	{ id: "office-de-tourisme", title: "Office de tourisme", body: <p>Coordonnees et horaires de l&apos;office de tourisme du Vaurais, aupres de la mairie.</p> },
-];
+export default async function TourismePage() {
+	const dbSections = await getPageSections("tourisme");
+	const sections: SectionData[] = dbSections.map((s) => ({
+		id: s.sectionId,
+		title: s.title,
+		body: <div dangerouslySetInnerHTML={{ __html: s.bodyHtml }} />,
+	}));
 
-export default function TourismePage() {
 	return (
 		<>
 			<PageHero title="Tourisme" description="Decouvrir Lavaur : monuments, balades, gastronomie et hebergements." />

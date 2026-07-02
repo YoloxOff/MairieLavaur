@@ -4,25 +4,27 @@ import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
 import ShareLinks from "@/components/ShareLinks";
 import ActuThumbnail from "@/components/ActuThumbnail";
-import { actualites, getActualiteBySlug } from "@/lib/content/actualites";
+import { getActualites, getActualiteBySlug } from "@/lib/data/actualites";
 
-export function generateStaticParams() {
-	return actualites.map((a) => ({ slug: a.slug }));
+export async function generateStaticParams() {
+	const items = await getActualites();
+	return items.map((a) => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
 	const { slug } = await params;
-	const actu = getActualiteBySlug(slug);
+	const actu = await getActualiteBySlug(slug);
 	if (!actu) return {};
 	return { title: actu.title, description: actu.excerpt };
 }
 
 export default async function ActualiteDetailPage({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug } = await params;
-	const actu = getActualiteBySlug(slug);
+	const actu = await getActualiteBySlug(slug);
 	if (!actu) notFound();
 
-	const related = actualites.filter((a) => a.category === actu.category && a.slug !== actu.slug).slice(0, 3);
+	const allActualites = await getActualites();
+	const related = allActualites.filter((a) => a.category === actu.category && a.slug !== actu.slug).slice(0, 3);
 	const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 	return (

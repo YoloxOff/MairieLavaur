@@ -40,6 +40,12 @@ export const serviceUrbanisme = {
 	],
 };
 
+export function toTelHref(telephone: string): string {
+	const digits = telephone.replace(/\s/g, "");
+	if (digits.length <= 4) return digits; // short numbers like 15, 17, 18, 3919
+	return digits.startsWith("0") ? `+33${digits.slice(1)}` : digits;
+}
+
 export const isatis = {
 	nom: "L'Isatis",
 	description: "Le bus urbain gratuit de la Ville de Lavaur, en service depuis le 1er septembre 2021.",

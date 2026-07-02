@@ -1,57 +1,31 @@
 import type { Metadata } from "next";
 import Breadcrumb from "@/components/Breadcrumb";
 import SectionBlock, { PageHero, type SectionData } from "@/components/SectionBlock";
-import { mairie } from "@/lib/coordonnees";
+import { getMairie } from "@/lib/data/coordonnees";
+import { getPageSections } from "@/lib/data/pageSections";
 
 export const metadata: Metadata = { title: "Vie municipale" };
 
-const sections: SectionData[] = [
-	{
-		id: "maire",
-		title: "Le Maire",
-		body: (
-			<p>
-				L&apos;Hôtel de Ville est ouvert au public {mairie.horaires.map((h) => `${h.jours.toLowerCase()} ${h.heures}`).join(", ")}. Contact : {mairie.telephone} - {mairie.email}.
-			</p>
-		),
-	},
-	{
-		id: "elus",
-		title: "Les elus",
-		body: <p>Retrouvez le trombinoscope des elus et les expressions politiques des groupes du conseil municipal aupres du service communication de la mairie.</p>,
-	},
-	{ id: "conseil-municipal", title: "Conseil municipal", body: <p>Dates des seances, ordres du jour et retransmissions du conseil municipal, disponibles aupres de la mairie.</p> },
-	{ id: "deliberations", title: "Deliberations", body: <p>Registre des decisions et deliberations du conseil municipal.</p> },
-	{ id: "budgets", title: "Budgets", body: <p>Budgets primitifs, comptes administratifs et documents budgetaires de la commune.</p> },
-	{
-		id: "marches-publics",
-		title: "Marches publics",
-		body: (
-			<>
-				<p>La ville de Lavaur publie regulierement des appels d&apos;offres pour des services et travaux, ainsi que des consultations recurrentes (electricite, gaz naturel, denrees alimentaires, fournitures de bureau).</p>
-				<p>Exemples de marches recents : prestations de fauchage et debroussaillage, amenagement de la route du Port d&apos;en Taix, fournitures scolaires et de loisirs, et l&apos;appel a candidatures pour l&apos;amenagement d&apos;un espace de restauration « rooftop » au-dessus du cinema Cine-Pastel.</p>
-				<p>Des listes annuelles des marches conclus sont disponibles depuis 2009. Contact commande publique : commandepublique@ville-lavaur.fr.</p>
-			</>
-		),
-	},
-	{
-		id: "recrutement",
-		title: "Recrutement & offres d'emploi",
-		body: (
-			<>
-				<p>La Ville de Lavaur recrute actuellement :</p>
-				<ul>
-					<li>un·e Gestionnaire Paie-RH</li>
-					<li>un·e Agent d&apos;Etat Civil et Operations Funeraires</li>
-				</ul>
-				<p>Fiches de poste detaillees disponibles aupres du service Ressources Humaines de la mairie.</p>
-			</>
-		),
-	},
-	{ id: "publications", title: "Publications & comptes-rendus", body: <p>Bulletin municipal, rapports d&apos;activite et comptes-rendus telechargeables.</p> },
-];
+export default async function VieMunicipalePage() {
+	const [mairie, dbSections] = await Promise.all([getMairie(), getPageSections("vie-municipale")]);
 
-export default function VieMunicipalePage() {
+	const sections: SectionData[] = [
+		{
+			id: "maire",
+			title: "Le Maire",
+			body: (
+				<p>
+					L&apos;Hôtel de Ville est ouvert au public {mairie.horaires.map((h) => `${h.jours.toLowerCase()} ${h.heures}`).join(", ")}. Contact : {mairie.telephone} - {mairie.email}.
+				</p>
+			),
+		},
+		...dbSections.map((s) => ({
+			id: s.sectionId,
+			title: s.title,
+			body: <div dangerouslySetInnerHTML={{ __html: s.bodyHtml }} />,
+		})),
+	];
+
 	return (
 		<>
 			<PageHero title="Vie municipale" description="Le maire, les elus, le conseil municipal et les publications officielles de la ville." />

@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Public_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
+import SiteChrome from "@/components/SiteChrome";
 import Footer from "@/components/Footer";
-import CookieBanner from "@/components/CookieBanner";
-import { mairie } from "@/lib/coordonnees";
-import { quickLinks } from "@/lib/nav";
+import { getMairie } from "@/lib/data/coordonnees";
 
 const publicSans = Public_Sans({
 	subsets: ["latin"],
@@ -32,7 +30,9 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+	const mairie = await getMairie();
+
 	return (
 		<html lang="fr" className={publicSans.variable}>
 			<body className="font-sans text-institution-900">
@@ -40,33 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					Aller au contenu principal
 				</a>
 
-				<div className="bg-institution-900 text-institution-100 text-sm">
-					<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 py-1.5 overflow-x-auto">
-						<div className="flex items-center gap-4 shrink-0">
-							<span className="hidden sm:inline text-institution-300">Liens rapides :</span>
-							{quickLinks.map((link) => (
-								<a key={link.href} href={link.href} className="hover:text-white whitespace-nowrap">
-									{link.label}
-								</a>
-							))}
-						</div>
-						<div className="flex items-center gap-4 shrink-0">
-							<a href="/contact#urgences" className="hover:text-white flex items-center gap-1 whitespace-nowrap">
-								<span aria-hidden="true">☎</span> Numeros utiles
-							</a>
-							<a href="/services-municipaux#rendez-vous" className="hover:text-white whitespace-nowrap">
-								Prendre rendez-vous
-							</a>
-						</div>
-					</div>
-				</div>
-
-				<Header />
-
-				<main id="main-content">{children}</main>
-
-				<Footer />
-				<CookieBanner />
+				<SiteChrome footer={<Footer />}>{children}</SiteChrome>
 
 				<script
 					type="application/ld+json"

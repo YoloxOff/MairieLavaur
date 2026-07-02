@@ -4,26 +4,32 @@ import { PageHero } from "@/components/SectionBlock";
 import Map from "@/components/Map";
 import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
-import { mairie, numerosUtiles } from "@/lib/coordonnees";
+import { numerosUtiles as staticNumerosUtiles, toTelHref } from "@/lib/coordonnees";
+import { getMairie } from "@/lib/data/coordonnees";
 
 export const metadata: Metadata = { title: "Contact" };
 
-const faq = [
-	{
-		q: "Comment obtenir un acte d'etat civil ?",
-		a: "Rendez-vous dans la rubrique Demarches pour effectuer une demande en ligne ou telecharger le formulaire correspondant.",
-	},
-	{
-		q: "Comment signaler un probleme sur la voie publique ?",
-		a: "Utilisez le formulaire de signalement disponible dans la rubrique Demarches, ou contactez directement les services techniques.",
-	},
-	{
-		q: "Quels sont les horaires d'ouverture de la mairie ?",
-		a: `La mairie est ouverte ${mairie.horaires.map((h) => `${h.jours.toLowerCase()} de ${h.heures}`).join(", ")}.`,
-	},
-];
+export default async function ContactPage() {
+	const mairie = await getMairie();
+	const numerosUtiles = [
+		{ label: "Mairie - Hôtel de Ville", tel: mairie.telephone, telHref: toTelHref(mairie.telephone) },
+		...staticNumerosUtiles.slice(1),
+	];
+	const faq = [
+		{
+			q: "Comment obtenir un acte d'etat civil ?",
+			a: "Rendez-vous dans la rubrique Demarches pour effectuer une demande en ligne ou telecharger le formulaire correspondant.",
+		},
+		{
+			q: "Comment signaler un probleme sur la voie publique ?",
+			a: "Utilisez le formulaire de signalement disponible dans la rubrique Demarches, ou contactez directement les services techniques.",
+		},
+		{
+			q: "Quels sont les horaires d'ouverture de la mairie ?",
+			a: `La mairie est ouverte ${mairie.horaires.map((h) => `${h.jours.toLowerCase()} de ${h.heures}`).join(", ")}.`,
+		},
+	];
 
-export default function ContactPage() {
 	return (
 		<>
 			<PageHero title="Contact" description="Une question, une demarche ? Contactez la mairie de Lavaur." />

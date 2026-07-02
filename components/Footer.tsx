@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import NewsletterForm from "./NewsletterForm";
-import { mairie } from "@/lib/coordonnees";
+import { getMairie } from "@/lib/data/coordonnees";
+import { toTelHref } from "@/lib/coordonnees";
 
 const reseaux: Record<string, string> = {
 	Facebook: "https://www.facebook.com/VilledeLavaur/",
@@ -9,7 +10,9 @@ const reseaux: Record<string, string> = {
 	Instagram: "https://www.instagram.com/villedelavaur/",
 };
 
-export default function Footer() {
+export default async function Footer() {
+	const mairie = await getMairie();
+
 	return (
 		<footer className="bg-institution-900 text-institution-100 mt-20">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 grid gap-10 md:grid-cols-4">
@@ -20,7 +23,7 @@ export default function Footer() {
 						<br />
 						{mairie.adresseLigne2} - {mairie.codePostal} {mairie.ville}
 						<br />
-						<a href={`tel:${mairie.telephoneHref}`} className="hover:text-white">
+						<a href={`tel:${toTelHref(mairie.telephone)}`} className="hover:text-white">
 							{mairie.telephone}
 						</a>
 						<br />

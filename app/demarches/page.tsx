@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
-import { demarcheCategories, getDemarchesByCategory } from "@/lib/content/demarches";
+import { demarcheCategories } from "@/lib/content/demarches";
+import { getDemarches } from "@/lib/data/demarches";
 
 export const metadata: Metadata = { title: "Demarches" };
 
-export default function DemarchesPage() {
+export default async function DemarchesPage() {
+	const all = await getDemarches();
+
 	return (
 		<section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
 			<Breadcrumb items={[{ label: "Accueil", href: "/" }, { label: "Demarches" }]} />
@@ -15,7 +18,7 @@ export default function DemarchesPage() {
 			</p>
 
 			{demarcheCategories.map((cat) => {
-				const items = getDemarchesByCategory(cat);
+				const items = all.filter((d) => d.category === cat);
 				if (items.length === 0) return null;
 				return (
 					<div key={cat} id={cat.toLowerCase().replace(/[^a-z0-9]+/g, "-")} className="mb-10 scroll-mt-24">

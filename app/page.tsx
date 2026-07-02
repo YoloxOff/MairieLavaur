@@ -3,8 +3,8 @@ import Reveal from "@/components/Reveal";
 import Map from "@/components/Map";
 import NewsletterForm from "@/components/NewsletterForm";
 import ActuThumbnail from "@/components/ActuThumbnail";
-import { actualites } from "@/lib/content/actualites";
-import { getUpcomingEvenements } from "@/lib/content/evenements";
+import { getActualites } from "@/lib/data/actualites";
+import { getUpcomingEvenements } from "@/lib/data/evenements";
 
 const accesRapides = [
 	{ label: "Etat civil", href: "/demarches", icon: "📄" },
@@ -43,8 +43,9 @@ const newsletterMessages: Record<string, string> = {
 
 export default async function HomePage({ searchParams }: { searchParams: Promise<{ newsletter?: string }> }) {
 	const { newsletter } = await searchParams;
-	const latestActus = actualites.slice(0, 3);
-	const upcomingEvents = getUpcomingEvenements().slice(0, 3);
+	const [allActualites, allUpcoming] = await Promise.all([getActualites(), getUpcomingEvenements()]);
+	const latestActus = allActualites.slice(0, 3);
+	const upcomingEvents = allUpcoming.slice(0, 3);
 
 	return (
 		<>

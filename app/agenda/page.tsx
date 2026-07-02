@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
 import AgendaViews from "@/components/AgendaViews";
-import { getUpcomingEvenements, evenementCategories } from "@/lib/content/evenements";
+import { evenementCategories } from "@/lib/content/evenements";
+import { getUpcomingEvenements } from "@/lib/data/evenements";
 
 export const metadata: Metadata = { title: "Agenda" };
 
 export default async function AgendaPage({ searchParams }: { searchParams: Promise<{ categorie?: string }> }) {
 	const { categorie } = await searchParams;
-	const events = getUpcomingEvenements(categorie);
+	const events = await getUpcomingEvenements(categorie);
 
 	const now = new Date();
 	const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);

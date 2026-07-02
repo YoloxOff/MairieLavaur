@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
 import ActuThumbnail from "@/components/ActuThumbnail";
-import { actualites, actualiteCategories } from "@/lib/content/actualites";
+import { actualiteCategories } from "@/lib/content/actualites";
+import { getActualites } from "@/lib/data/actualites";
 
 export const metadata: Metadata = { title: "Actualites" };
 
@@ -13,7 +14,7 @@ export default async function ActualitesPage({
 }) {
 	const { categorie, recherche } = await searchParams;
 
-	let items = actualites;
+	let items = await getActualites();
 	if (categorie) {
 		items = items.filter((a) => a.category.toLowerCase() === categorie.toLowerCase());
 	}
