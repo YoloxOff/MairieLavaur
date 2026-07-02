@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 import { mairie } from "@/lib/coordonnees";
+import { quickLinks } from "@/lib/nav";
 
 const publicSans = Public_Sans({
 	subsets: ["latin"],
@@ -40,13 +41,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				</a>
 
 				<div className="bg-institution-900 text-institution-100 text-sm">
-					<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-end gap-4 py-1.5">
-						<a href="/contact#urgences" className="hover:text-white flex items-center gap-1">
-							<span aria-hidden="true">☎</span> Numeros utiles
-						</a>
-						<a href="/services-municipaux#rendez-vous" className="hover:text-white">
-							Prendre rendez-vous
-						</a>
+					<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 py-1.5 overflow-x-auto">
+						<div className="flex items-center gap-4 shrink-0">
+							<span className="hidden sm:inline text-institution-300">Liens rapides :</span>
+							{quickLinks.map((link) => (
+								<a key={link.href} href={link.href} className="hover:text-white whitespace-nowrap">
+									{link.label}
+								</a>
+							))}
+						</div>
+						<div className="flex items-center gap-4 shrink-0">
+							<a href="/contact#urgences" className="hover:text-white flex items-center gap-1 whitespace-nowrap">
+								<span aria-hidden="true">☎</span> Numeros utiles
+							</a>
+							<a href="/services-municipaux#rendez-vous" className="hover:text-white whitespace-nowrap">
+								Prendre rendez-vous
+							</a>
+						</div>
 					</div>
 				</div>
 

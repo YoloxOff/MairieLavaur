@@ -2,14 +2,14 @@ import type { MetadataRoute } from "next";
 import { actualites } from "@/lib/content/actualites";
 import { evenements } from "@/lib/content/evenements";
 import { demarches } from "@/lib/content/demarches";
-import { primaryNav } from "@/lib/nav";
+import { primaryNav, quickLinks } from "@/lib/nav";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-	const staticRoutes: MetadataRoute.Sitemap = primaryNav
-		.filter((item) => !item.href.includes("#"))
-		.map((item) => ({ url: `${siteUrl}${item.href}`, lastModified: new Date() }));
+	const allHrefs = [...primaryNav.map((item) => item.href), ...quickLinks.map((link) => link.href)];
+	const uniquePaths = Array.from(new Set(allHrefs.filter((href) => !href.includes("#"))));
+	const staticRoutes: MetadataRoute.Sitemap = uniquePaths.map((href) => ({ url: `${siteUrl}${href}`, lastModified: new Date() }));
 
 	const actualiteRoutes: MetadataRoute.Sitemap = actualites.map((a) => ({
 		url: `${siteUrl}/actualites/${a.slug}`,

@@ -9,70 +9,77 @@ export type NavItem = {
 	children?: NavChild[];
 };
 
+// Structure reprise du menu principal du site officiel
+// https://www.ville-lavaur.fr/ (Votre ville / Vie quotidienne / Pole
+// Amenagement et Developpement / Cadre de vie / Culture / Sport-jeunesse).
+// Les liens pointent vers la page ou l'ancre la plus proche de notre
+// arborescence actuelle, faute d'avoir une page dediee pour chaque
+// sous-rubrique du site d'origine.
 export const primaryNav: NavItem[] = [
 	{ label: "Accueil", href: "/" },
 	{
-		label: "La Ville",
+		label: "Votre ville",
 		href: "/la-ville",
 		children: [
-			{ label: "Presentation", href: "/la-ville#presentation" },
-			{ label: "Histoire", href: "/la-ville#histoire" },
-			{ label: "Patrimoine", href: "/la-ville#patrimoine" },
-			{ label: "Quartiers", href: "/la-ville#quartiers" },
-			{ label: "Plan interactif", href: "/la-ville#plan-interactif" },
-			{ label: "Economie", href: "/la-ville#economie" },
-			{ label: "Environnement", href: "/la-ville#environnement" },
-			{ label: "Galerie photos & videos", href: "/la-ville#galerie" },
+			{ label: "Visiter Lavaur", href: "/tourisme" },
+			{ label: "Votre mairie", href: "/vie-municipale" },
 		],
 	},
 	{
-		label: "Vie municipale",
-		href: "/vie-municipale",
-		children: [
-			{ label: "Le Maire", href: "/vie-municipale#maire" },
-			{ label: "Les elus", href: "/vie-municipale#elus" },
-			{ label: "Conseil municipal", href: "/vie-municipale#conseil-municipal" },
-			{ label: "Deliberations", href: "/vie-municipale#deliberations" },
-			{ label: "Budgets", href: "/vie-municipale#budgets" },
-			{ label: "Marches publics", href: "/vie-municipale#marches-publics" },
-			{ label: "Recrutement & offres d'emploi", href: "/vie-municipale#recrutement" },
-			{ label: "Publications & comptes-rendus", href: "/vie-municipale#publications" },
-		],
-	},
-	{ label: "Actualites", href: "/actualites" },
-	{ label: "Agenda", href: "/agenda" },
-	{ label: "Demarches", href: "/demarches" },
-	{
-		label: "Vivre a Lavaur",
+		label: "Vie quotidienne",
 		href: "/vivre-a-lavaur",
 		children: [
-			{ label: "Petite enfance", href: "/vivre-a-lavaur#petite-enfance" },
-			{ label: "Ecoles, colleges, lycees", href: "/vivre-a-lavaur#education" },
-			{ label: "Culture & bibliotheque", href: "/vivre-a-lavaur#culture" },
-			{ label: "Sport & associations", href: "/vivre-a-lavaur#sport" },
-			{ label: "Sante & securite", href: "/vivre-a-lavaur#sante-securite" },
-			{ label: "Mobilite", href: "/vivre-a-lavaur#mobilite" },
-			{ label: "Commerces & marche", href: "/vivre-a-lavaur#commerces" },
+			{ label: "Education", href: "/vivre-a-lavaur#education" },
+			{ label: "Associations", href: "/vivre-a-lavaur#sport" },
+			{ label: "L'Isatis (bus gratuit)", href: "/vivre-a-lavaur#mobilite" },
+			{ label: "Centre Communal d'Action Sociale", href: "/vivre-a-lavaur#sante-securite" },
+			{ label: "Sante", href: "/vivre-a-lavaur#sante-securite" },
 		],
 	},
 	{
-		label: "Tourisme",
-		href: "/tourisme",
-		children: [
-			{ label: "Monuments", href: "/tourisme#monuments" },
-			{ label: "Balades", href: "/tourisme#balades" },
-			{ label: "Restaurants & hebergements", href: "/tourisme#restaurants-hebergements" },
-			{ label: "Office de tourisme", href: "/tourisme#office-de-tourisme" },
-		],
-	},
-	{
-		label: "Services municipaux",
+		label: "Pôle Aménagement et Développement",
 		href: "/services-municipaux",
 		children: [
-			{ label: "Tous les services", href: "/services-municipaux#tous-les-services" },
-			{ label: "Horaires & contacts", href: "/services-municipaux#horaires-contacts" },
-			{ label: "Prise de rendez-vous", href: "/services-municipaux#rendez-vous" },
+			{ label: "Vie économique", href: "/la-ville#economie" },
+			{ label: "Urbanisme", href: "/services-municipaux#tous-les-services" },
+		],
+	},
+	{
+		label: "Cadre de vie",
+		href: "/services-municipaux",
+		children: [
+			{ label: "Police municipale", href: "/services-municipaux#tous-les-services" },
+			{ label: "Environnement", href: "/la-ville#environnement" },
+			{ label: "Propreté", href: "/vivre-a-lavaur#commerces" },
+			{ label: "Guide pratique", href: "/contact" },
+		],
+	},
+	{
+		label: "Culture",
+		href: "/vivre-a-lavaur#culture",
+		children: [
+			{ label: "La médiathèque", href: "/vivre-a-lavaur#culture" },
+			{ label: "Le musée", href: "/vivre-a-lavaur#culture" },
+		],
+	},
+	{
+		label: "Sport/jeunesse",
+		href: "/vivre-a-lavaur#sport",
+		children: [
+			{ label: "Sport", href: "/vivre-a-lavaur#sport" },
+			{ label: "Jeunesse et loisirs", href: "/vivre-a-lavaur#education" },
 		],
 	},
 	{ label: "Contact", href: "/contact" },
+];
+
+// Liens rapides secondaires, sur le meme principe que la barre "Liens
+// rapides" du site officiel (Newsletter, Plan interactif, Marches
+// publics...). Garde Actualites/Agenda/Demarches facilement accessibles
+// puisqu'ils ne sont plus dans le menu principal.
+export const quickLinks: NavChild[] = [
+	{ label: "Actualités", href: "/actualites" },
+	{ label: "Agenda", href: "/agenda" },
+	{ label: "Démarches", href: "/demarches" },
+	{ label: "Marchés publics", href: "/vie-municipale#marches-publics" },
 ];
