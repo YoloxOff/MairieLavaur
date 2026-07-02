@@ -1,8 +1,19 @@
+# dependencies
 node_modules/
-wp-content/themes/lavaur/assets/dist/*
-!wp-content/themes/lavaur/assets/dist/.gitkeep
-.wp-playground/
+
+# next.js
+.next/
+out/
+next-env.d.ts
+
+# misc
 *.log
 .DS_Store
 Thumbs.db
+
+# env
 .env
+.env*.local
+
+# vercel
+.vercel
