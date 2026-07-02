@@ -45,7 +45,11 @@ const sections: SectionData[] = [
 	{
 		id: "economie",
 		title: "Economie",
-		body: <p>Zones d&apos;activites, commerces de centre-ville et acteurs economiques locaux. Contenu a completer par la mairie.</p>,
+		body: (
+			<p>
+				Autrefois eveche et sous-prefecture, Lavaur est devenue le moteur du troisieme pole economique tarnais, apres Castres et Albi. Zones d&apos;activites, commerces de centre-ville et acteurs economiques locaux animent le tissu economique de la ville.
+			</p>
+		),
 	},
 	{
 		id: "environnement",

@@ -50,8 +50,8 @@ export const primaryNav: NavItem[] = [
 		children: [
 			{ label: "Police municipale", href: "/services-municipaux#tous-les-services" },
 			{ label: "Environnement", href: "/la-ville#environnement" },
-			{ label: "Propreté", href: "/vivre-a-lavaur#commerces" },
-			{ label: "Guide pratique", href: "/contact" },
+			{ label: "Propreté", href: "/services-municipaux#guide-pratique" },
+			{ label: "Guide pratique", href: "/services-municipaux#guide-pratique" },
 		],
 	},
 	{
@@ -67,7 +67,7 @@ export const primaryNav: NavItem[] = [
 		href: "/vivre-a-lavaur#sport",
 		children: [
 			{ label: "Sport", href: "/vivre-a-lavaur#sport" },
-			{ label: "Jeunesse et loisirs", href: "/vivre-a-lavaur#education" },
+			{ label: "Jeunesse et loisirs", href: "/vivre-a-lavaur#jeunesse" },
 		],
 	},
 	{ label: "Contact", href: "/contact" },

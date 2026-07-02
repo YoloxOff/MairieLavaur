@@ -15,7 +15,7 @@ const services = [
 	{ nom: "Affaires scolaires & cantine", horaires: horairesMairie, tel: mairie.telephone },
 	{ nom: "Culture (mediatheque, musee du Pays de Cocagne)", horaires: "Voir horaires sur place", tel: mairie.telephone },
 	{ nom: "Sport & vie associative", horaires: horairesMairie, tel: mairie.telephone },
-	{ nom: "Police municipale", horaires: horairesMairie, tel: "05 63 58 05 69" },
+	{ nom: "Police municipale", horaires: "24h/24, 7j/7", tel: "05 63 58 05 69" },
 	{ nom: "Environnement & proprete", horaires: horairesMairie, tel: mairie.telephone },
 	{ nom: "L'Isatis (bus gratuit)", horaires: "Lundi au samedi", tel: "05 31 81 96 35" },
 ];
@@ -47,6 +47,25 @@ export default function ServicesMunicipauxPage() {
 									</p>
 								</div>
 							))}
+						</div>
+					</Reveal>
+				</div>
+			</section>
+
+			<section id="guide-pratique" className="scroll-mt-24 bg-surface-light">
+				<div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-14">
+					<Reveal>
+						<h2 className="section-title mb-4">Guide pratique</h2>
+						<div className="prose prose-institution max-w-none prose-headings:text-institution-900 prose-a:text-institution-700">
+							<p>
+								<strong>Dechets &amp; proprete</strong> : la collecte et le traitement des ordures menageres sont geres par le SMICTOM (Syndicat Mixte Intercommunal de Collecte et de Traitement des Ordures Menageres), cree en 1980 et regroupant 24 communes.
+							</p>
+							<p>
+								<strong>Se deplacer</strong> : privilegiez L&apos;Isatis, le bus urbain gratuit de la ville, un acte ecologique citoyen particulierement utile pour les personnes sans permis ou inaptes a la conduite.
+							</p>
+							<p>
+								<strong>Annuaires</strong> : la mairie met a disposition un annuaire des equipements municipaux (ecoles, enfance et jeunesse, culture, social, sport), un annuaire des services publics, et un annuaire des associations locales (sport, culture, action sociale).
+							</p>
 						</div>
 					</Reveal>
 				</div>

@@ -23,6 +23,19 @@ const sections: SectionData[] = [
 		),
 	},
 	{
+		id: "jeunesse",
+		title: "Jeunesse et loisirs",
+		body: (
+			<>
+				<p>La ville propose un programme riche et diversifie pour les jeunes, organise autour de plusieurs structures.</p>
+				<p><strong>Le Centre de loisirs des Clauzades</strong> accueille les enfants pendant les vacances et sur les temps periscolaires.</p>
+				<p><strong>L&apos;Espace Jeunesse Municipal</strong> s&apos;adresse aux 11-25 ans, avec deux implantations : pres du lycee Las Cases et au college des Clauzades.</p>
+				<p><strong>Les ALAE</strong> (Accueils Loisirs Associes a l&apos;Ecole) assurent la continuite des temps scolaires et periscolaires durant l&apos;annee.</p>
+				<p><strong>Les sejours</strong> offrent aux jeunes des moments pour faire du sport, s&apos;oxygener, vivre en groupe et tisser du lien social.</p>
+			</>
+		),
+	},
+	{
 		id: "culture",
 		title: "Culture & bibliotheque",
 		body: (
@@ -51,6 +64,11 @@ const sections: SectionData[] = [
 				<p>Lavaur dispose d&apos;un centre hospitalier en partenariat avec le CHU de Toulouse depuis 2009. Depuis 2024, il propose des consultations specialisees (cardiologie, rhumatologie, orthopedie, neurologie...), une unite de court-sejour geriatrique, une unite douleur et memoire, un service de radiologie avec mammographie 3D, et une equipe psychiatrique specialisee. Les urgences fonctionnent de 8h a 20h.</p>
 				<p>Une permanence du Comite de la Ligue contre le Cancer se tient le 3e mercredi du mois (14h-16h30) a l&apos;Espace Saint Roch.</p>
 				<p>Des permanences d&apos;accompagnement pour les personnes en situation de handicap et leurs familles sont proposees par l&apos;AFM Telethon a la Maison des associations (Bel Air).</p>
+				<p><strong>Police municipale</strong> : joignable 24h/24 et 7j/7 au 05 63 58 05 69.</p>
+				<p>
+					<strong>Centre Communal d&apos;Action Sociale (CCAS)</strong> : accueille les habitants en difficulte financiere ou sociale et propose un soutien ponctuel et un accompagnement personnalise (service social, aides aux personnes agees et handicapees, portage de repas a domicile, logement social, Residence Autonomie pour les plus de 60 ans).
+					A l&apos;Espace Saint Roch, 2 rue de l&apos;abattoir (2e etage), 81500 Lavaur. Ouvert du lundi au vendredi de 8h30 a 12h et de 14h a 17h (16h le vendredi).
+				</p>
 			</>
 		),
 	},

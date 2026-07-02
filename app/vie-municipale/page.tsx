@@ -27,9 +27,11 @@ const sections: SectionData[] = [
 		id: "marches-publics",
 		title: "Marches publics",
 		body: (
-			<p>
-				Consultations en cours de la Ville de Lavaur, dont l&apos;appel a candidatures pour l&apos;amenagement d&apos;un espace de restauration « rooftop » au-dessus du cinema Cine-Pastel. Contact commande publique : commandepublique@ville-lavaur.fr.
-			</p>
+			<>
+				<p>La ville de Lavaur publie regulierement des appels d&apos;offres pour des services et travaux, ainsi que des consultations recurrentes (electricite, gaz naturel, denrees alimentaires, fournitures de bureau).</p>
+				<p>Exemples de marches recents : prestations de fauchage et debroussaillage, amenagement de la route du Port d&apos;en Taix, fournitures scolaires et de loisirs, et l&apos;appel a candidatures pour l&apos;amenagement d&apos;un espace de restauration « rooftop » au-dessus du cinema Cine-Pastel.</p>
+				<p>Des listes annuelles des marches conclus sont disponibles depuis 2009. Contact commande publique : commandepublique@ville-lavaur.fr.</p>
+			</>
 		),
 	},
 	{
