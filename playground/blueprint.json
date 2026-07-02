@@ -1,0 +1,21 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"landingPage": "/",
+	"preferredVersions": {
+		"php": "8.3",
+		"wp": "6.7"
+	},
+	"steps": [
+		{
+			"step": "activateTheme",
+			"themeFolderName": "lavaur"
+		},
+		{
+			"step": "setSiteOptions",
+			"options": {
+				"blogname": "Ville de Lavaur",
+				"blogdescription": "Site officiel de la Ville de Lavaur"
+			}
+		}
+	]
+}
